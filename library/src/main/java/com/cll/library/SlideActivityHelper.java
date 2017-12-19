@@ -59,7 +59,13 @@ public class SlideActivityHelper implements Application.ActivityLifecycleCallbac
     if (size < 2) {
       return null;
     }
-    return mActivityStack.elementAt(size - 2);
+    //解决上一个页面正在结束问题
+    for (int i = size - 2; i >= 0; i--) {
+      if (!mActivityStack.elementAt(i).isFinishing()) {
+        return mActivityStack.elementAt(i);
+      }
+    }
+    return null;
   }
 
   public void finishAllActivity() {
