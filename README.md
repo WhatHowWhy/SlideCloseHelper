@@ -19,9 +19,9 @@
     mSlideActivityHelper = new SlideActivityHelper();
     registerActivityLifecycleCallbacks(mSlideActivityHelper);
  
-### step2.设置参数
+### step2.设置参数(注意：一个页面不要重复调用)
    在需要滑动返回的页面进行设置,见[sample](https://github.com/WhatHowWhy/SlideCloseHelper/blob/master/app/src/main/java/com/cll/slideclosehelper/SlideActivity.java)
-   注意：一个页面不要重复调用
+   
     SlideCloseHelper.attach(this, MyApplication.getMyApplication().getSlideActivityHelper(),
             new SlideConfig.Builder().edgeFlags(
                 ViewDragHelper.EDGE_LEFT | ViewDragHelper.EDGE_RIGHT | ViewDragHelper.EDGE_TOP)
