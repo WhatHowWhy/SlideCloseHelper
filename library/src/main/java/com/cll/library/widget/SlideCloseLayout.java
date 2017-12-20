@@ -309,6 +309,8 @@ public class SlideCloseLayout extends FrameLayout {
         mCacheDrawView.setBackground(mPreDecorViewDrawable);
         mCacheDrawView.setVisibility(VISIBLE);
         mCacheDrawView.drawCacheView(mPreContentView);
+        mCacheDrawView.setPadding(0, 0, 0, mStateTop);
+        mCacheDrawView.setY(mStateTop);
         mShadowView.setVisibility(VISIBLE);
       }
       float percent = 0;

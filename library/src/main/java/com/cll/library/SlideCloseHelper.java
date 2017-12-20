@@ -24,7 +24,13 @@ public class SlideCloseHelper {
   }
 
   public static View getContentView(Activity activity) {
-    return getDecorView(activity).getChildAt(0);
+    ViewGroup decorView = getDecorView(activity);
+    //上一个页面也有滑动
+    View slideLayout = decorView.getChildAt(1);
+    if (slideLayout != null && slideLayout instanceof SlideCloseLayout) {
+      return ((SlideCloseLayout) slideLayout).getChildAt(2);
+    }
+    return ((ViewGroup) decorView.getChildAt(0)).getChildAt(1);
   }
 
   /**
@@ -48,6 +54,11 @@ public class SlideCloseHelper {
       statusBarHeight1 = curActivity.getResources().getDimensionPixelSize(resourceId);
     }
     final ViewGroup decorView = getDecorView(curActivity);
+    View slideLayout = decorView.getChildAt(1);
+    //一个页面不能重复调用，调用结果以第一次为准
+    if (slideLayout != null && slideLayout instanceof SlideCloseLayout) {
+      return (SlideCloseLayout) slideLayout;
+    }
     final ViewGroup contentView = (ViewGroup) decorView.getChildAt(0);
     //去除状态栏的content内容
     final View view = contentView.getChildAt(1);
